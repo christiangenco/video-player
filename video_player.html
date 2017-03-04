@@ -4,7 +4,7 @@
 body, html{
   margin: 0;
   padding: 0;
-  background-color: black;
+  /*background-color: black;*/
 }
 
 video{
@@ -16,6 +16,7 @@ video{
 <body>
 
 <div id="videos"></div>
+<audio id="boop" src="shortBoop.mp3"></audio>
 
 <script>
 const videoUrls = [
@@ -55,22 +56,31 @@ window.addEventListener('mousedown', () => {
   setIndex(videoIndex+1);
 });
 
+const boop = document.querySelector("#boop");
 window.addEventListener('keydown', (e) => {
-  if(e.keyCode === 39){ // right
-    setIndex(videoIndex+1);
-  }else if(e.keyCode === 37){ // left
-    setIndex(videoIndex-1);
+  console.info(e.keyCode);
+  const video = videos[videoIndex];
+
+  switch(e.keyCode){
+    case 39: setIndex(videoIndex+1); break; // right
+    case 37: setIndex(videoIndex-1); break; // left
+    case 38: setIndex(videoIndex); break; // up
+    case 40: video.currentTime = video.duration; break; // down
+    case 48: video.paused ? video.play() : video.pause(); break; // 0
+    default: if(boop.paused){
+      boop.currentTime = 0;
+      boop.play();
+    }
   }
 });
 
 // click: next video
 // left arrow: previous video
 // right arrow: next video
-
 // up: beginning of this video
 // down: end of this video
-// space, any other key: play boop
 // 0: play/pause
+// space, any other key: play boop
 
 </script>
 </body>
