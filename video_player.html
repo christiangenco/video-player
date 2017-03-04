@@ -4,7 +4,7 @@
 body, html{
   margin: 0;
   padding: 0;
-  /*background-color: black;*/
+  background-color: black;
 }
 
 video{
@@ -16,8 +16,6 @@ video{
 <body>
 
 <div id="videos"></div>
-
-<!-- <video src="videos/01.mp4"></video> -->
 
 <script>
 const videoUrls = [
@@ -31,17 +29,9 @@ const videos = videoUrls.map((src, i) => {
   const video = document.createElement("video");
   video.src = src;
   video.preload = "auto";
-  // if(i !== videoIndex) video.style.display="none"
   videosContainer.appendChild(video);
   return video;
 });
-
-// preload?
-// videos.map(video => {
-//   video.play().then(() => {
-//     console.log("playing");
-//   })
-// });
 
 let videoIndex = 0;
 const setIndex = (index) => {
@@ -59,6 +49,7 @@ const setIndex = (index) => {
     }
   });
 }
+setIndex(videoIndex);
 
 window.addEventListener('mousedown', () => {
   setIndex(videoIndex+1);
@@ -71,6 +62,15 @@ window.addEventListener('keydown', (e) => {
     setIndex(videoIndex-1);
   }
 });
+
+// click: next video
+// left arrow: previous video
+// right arrow: next video
+
+// up: beginning of this video
+// down: end of this video
+// space, any other key: play boop
+// 0: play/pause
 
 </script>
 </body>
