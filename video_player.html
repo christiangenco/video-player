@@ -67,7 +67,7 @@ window.addEventListener('keydown', (e) => {
     case 37: setIndex(videoIndex-1); break; // left
     case 38: setIndex(videoIndex); break; // up
     case 40: video.currentTime = video.duration; break; // down
-    case 96: video.paused ? video.play() : video.pause(); break; // 0
+    case 45: video.paused ? video.play() : video.pause(); break; // 0
     default: if(boop.paused){
       boop.currentTime = 0;
       boop.play();
